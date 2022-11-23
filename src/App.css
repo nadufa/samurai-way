@@ -1,0 +1,15 @@
+.App-Wrapper {
+    margin: 0 auto;
+    width: 1200px;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas:
+            "h h"
+            "n c";
+}
+
+.App-Wrapper-Content {
+    grid-area: c;
+    background: azure;
+}
