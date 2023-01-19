@@ -1,4 +1,26 @@
 .dialogs {
-    background-color: #5cecff;
+    background-color: #bef6ff;
     height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+}
+
+.dialogsItems {
+    padding: 10px 15px;
+}
+
+.dialogsItems .dialog {
+    color: #004148;
+}
+
+.dialogsItems .active {
+    color: rgba(0, 65, 72, 0.5);
+}
+
+.messages {
+    padding: 10px 15px;
+}
+
+.messages .message {
+    color: #004148;
 }

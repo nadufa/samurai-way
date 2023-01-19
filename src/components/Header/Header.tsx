@@ -5,7 +5,7 @@ import classes from "./Header.module.css";
 const Header = () => {
     return (
         <header className={classes.header}>
-            <img src="https://www.freepnglogos.com/uploads/apple-logo-png/file-apple-logo-black-svg-wikimedia-commons-1.png"/>
+            <img src="https://cryptologos.cc/logos/waves-waves-logo.png"/>
         </header>
     )
 }
