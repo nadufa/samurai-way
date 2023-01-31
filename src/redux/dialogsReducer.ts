@@ -1,4 +1,18 @@
-import {ActionTsarType, DialogsPageType,/* ProfilePageType, StateType*/} from "./store";
+export type DialogType = {
+    id: string
+    name: string
+}
+
+export type MessageType = {
+    id: string
+    message: string
+}
+
+export type DialogsPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageBody: string
+}
 
 let initialState: DialogsPageType = {
     dialogs: [
@@ -18,18 +32,14 @@ let initialState: DialogsPageType = {
     newMessageBody: ''
 }
 
-export const dialogsReducer = (state = initialState, action: ActionTsarType): DialogsPageType => {
+export const dialogsReducer = (state = initialState, action: DialogsRedActionsType): DialogsPageType => {
     switch (action.type) {
         case 'UPDATE_NEW_MESSAGE_BODY': {
-            // state.newMessageBody = action.body
-            console.log('from reducer', action.body)
             return {...state, newMessageBody: action.body}
         }
         case 'SEND_MESSAGE': {
             let body = state.newMessageBody
-            state.newMessageBody = ''
-            state.messages.push({id: '6', message: body})
-            return state
+            return {...state, newMessageBody: '', messages: [...state.messages, {id: '6', message: body}]}
         }
         default:
             return state
@@ -53,3 +63,5 @@ export const updateNewMessageBodyAC = (body: string) => {
         body: body,
     } as const
 }
+
+export type DialogsRedActionsType = sendMessageACType | updateNewMessageBodyACType

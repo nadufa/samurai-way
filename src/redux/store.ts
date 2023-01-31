@@ -1,5 +1,6 @@
 import {addPostACType, profileReducer, updateNewPostTextACType} from "./profileReducer";
 import {dialogsReducer, sendMessageACType, updateNewMessageBodyACType} from "./dialogsReducer";
+import {followACType, setUsersACType, unfollowACType} from "./usersReducer";
 
 export type PostType = {
     id: number
@@ -84,6 +85,13 @@ let store: StoreType = {
     },
 }
 
-export type ActionTsarType = addPostACType | updateNewPostTextACType | sendMessageACType | updateNewMessageBodyACType
+export type ActionTsarType =
+    addPostACType
+    | updateNewPostTextACType
+    | sendMessageACType
+    | updateNewMessageBodyACType
+    | followACType
+    | unfollowACType
+    | setUsersACType
 
 export default store

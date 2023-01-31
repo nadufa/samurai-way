@@ -8,8 +8,9 @@ import {ActionTsarType, DialogsPageType, PostType, ProfilePageType} from "../../
 
 type MyPostsPropsType = {
     posts: PostType[],
-    newPostText: string
-    dispatch: (action: ActionTsarType) => DialogsPageType | ProfilePageType | void
+    newPostText: string,
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
 
@@ -19,13 +20,13 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => {
-        props.dispatch(addPostAC())
+    let onAddPost = () => {
+        props.addPost()
     }
 
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        text && props.dispatch(updateNewPostTextAC(text))
+        text && props.updateNewPostText(text)
     }
 
     return (
@@ -38,7 +39,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                               value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={classes.posts}>

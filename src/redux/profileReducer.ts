@@ -1,5 +1,14 @@
-import React from "react";
-import {ActionTsarType, PostType, ProfilePageType} from "./store";
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
 
 let initialState: ProfilePageType = {
     posts: [
@@ -9,7 +18,7 @@ let initialState: ProfilePageType = {
     newPostText: ''
 }
 
-export const profileReducer = (state = initialState, action: ActionTsarType): ProfilePageType => {
+export const profileReducer = (state = initialState, action: ProfileRedActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD_POST': {
             const newPost: PostType = {
@@ -17,13 +26,10 @@ export const profileReducer = (state = initialState, action: ActionTsarType): Pr
                 message: state.newPostText,
                 likesCount: 0,
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            return {...state, posts: [...state.posts, newPost], newPostText: ''}
         }
         case 'UPDATE_NEW_POST_TEXT': {
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText: action.newText}
         }
         default:
             return state
@@ -40,8 +46,11 @@ export const addPostAC = () => {
 
 export type updateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 export const updateNewPostTextAC = (text: string) => {
+    console.log('updateNewPostTextAC')
     return {
         type: 'UPDATE_NEW_POST_TEXT',
         newText: text,
     } as const
 }
+
+export type ProfileRedActionsType = addPostACType | updateNewPostTextACType
