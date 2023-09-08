@@ -1,7 +1,6 @@
 import React from 'react';
 import './Post.module.css';
 import classes from "./Post.module.css";
-import {PostType} from "../../../../redux/store";
 
 type PostPropsType = {
     message: string
