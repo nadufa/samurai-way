@@ -1,6 +1,7 @@
 import React from "react";
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {updateObjectInArray} from "../utils/objectHelpers";
 
 export type UserLocationType = {
     city: string
@@ -38,10 +39,16 @@ let initialState: UsersPageType = {
 export const usersReducer = (state = initialState, action: UserRedActionsType): UsersPageType => {
     switch (action.type) {
         case 'FOLLOW': {
-            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)}
+            return {
+                ...state,
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
+            }
         }
         case 'UNFOLLOW': {
-            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}
+            return {
+                ...state,
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
+            }
         }
         case 'SET-USERS': {
             return {...state, users: action.users}
@@ -143,45 +150,26 @@ export const requestUsers = (page: number, pageSize: number) => {
 
 }
 
-
-export const follow = (userId: number) => {
-
-    return (dispatch: Dispatch) => {
-
-        dispatch(toggleFollowingInProgressAC(true, userId))
-        usersAPI.follow(userId)
-            .then(
-                response => {
-                    if (response.data.resultCode == 0) {
-                        dispatch(followSuccessAC(userId))
-                    }
-                    dispatch(toggleFollowingInProgressAC(false, userId))
-                }
-            )
-
+export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: any, actionCreator: any) => {
+    dispatch(toggleFollowingInProgressAC(true, userId))
+    const response = await apiMethod(userId)
+    if (response.data.resultCode == 0) {
+        dispatch(actionCreator(userId))
     }
-
+    dispatch(toggleFollowingInProgressAC(false, userId))
 }
 
 
-export const unfollow = (userId: number) => {
-
-    return (dispatch: Dispatch) => {
-
-        dispatch(toggleFollowingInProgressAC(true, userId))
-
-        usersAPI.unfollow(userId)
-            .then(
-                response => {
-                    if (response.data.resultCode == 0) {
-                        dispatch(unfollowSuccessAC(userId))
-                    }
-                    dispatch(toggleFollowingInProgressAC(false, userId))
-                }
-            )
-
+export const follow = (userId: number) => {
+    return async (dispatch: Dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
     }
+}
 
+export const unfollow = (userId: number) => {
+    return async (dispatch: Dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccessAC)
+    }
 }
 
 

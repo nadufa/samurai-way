@@ -1,5 +1,4 @@
 import React from 'react';
-import {ProfileResponseType} from "../../../redux/profileReducer";
 
 type ProfileStatusPropsType = {
     status: string

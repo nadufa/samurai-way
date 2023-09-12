@@ -2,7 +2,6 @@ import React, {Component, ComponentType} from 'react';
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
 import {connect} from "react-redux";
-import {ProfilePageType} from "../redux/profileReducer";
 
 type mapStateToPropsType = {
     isAuth: boolean
@@ -27,5 +26,5 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
     const ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
 
     return ConnectedAuthRedirectComponent
-};
+}
 

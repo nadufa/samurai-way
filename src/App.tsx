@@ -1,21 +1,23 @@
-import React, {Component, ComponentType} from 'react';
+import React, {ComponentType} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
-import {getAuthUserData} from "./redux/authReducer";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeAppTC} from "./redux/appReducer";
 import Preloader from "./components/common/preloader/Preloader";
-import {RootState} from "./redux/redux-store";
+import store, {RootState} from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
+
 
 type mapStateToPropsType = {
     initialized: boolean
@@ -40,8 +42,8 @@ class App extends React.Component<AppPropsType, {}> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='App-Wrapper-Content'>
-                    <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
-                    <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
+                    <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+                    <Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
                     <Route path={'/news'} component={News}/>
                     <Route path={'/music'} component={Music}/>
                     <Route path={'/settings'} component={Settings}/>
@@ -57,7 +59,16 @@ const mapStateToProps = (state: RootState) => ({
     initialized: state.app.initialized
 })
 
-export default compose<ComponentType>(
+const AppContainer = compose<ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeAppTC}))(App)
 
+export const SamuraiJSApp = (props: any) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
