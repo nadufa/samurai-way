@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/nadufa/samurai-way.git/static/css/main.89f5f857.css",
+    "main.js": "/nadufa/samurai-way.git/static/js/main.765c960c.js",
+    "static/css/3.68327534.chunk.css": "/nadufa/samurai-way.git/static/css/3.68327534.chunk.css",
+    "static/js/3.c4674cef.chunk.js": "/nadufa/samurai-way.git/static/js/3.c4674cef.chunk.js",
+    "static/css/445.0db9cf31.chunk.css": "/nadufa/samurai-way.git/static/css/445.0db9cf31.chunk.css",
+    "static/js/445.f451d51a.chunk.js": "/nadufa/samurai-way.git/static/js/445.f451d51a.chunk.js",
+    "static/media/user.png": "/nadufa/samurai-way.git/static/media/user.03a0c31746680500c559.png",
+    "static/media/preloader.gif": "/nadufa/samurai-way.git/static/media/preloader.63d7da1bc33c0063002c.gif",
+    "index.html": "/nadufa/samurai-way.git/index.html",
+    "main.89f5f857.css.map": "/nadufa/samurai-way.git/static/css/main.89f5f857.css.map",
+    "main.765c960c.js.map": "/nadufa/samurai-way.git/static/js/main.765c960c.js.map",
+    "3.68327534.chunk.css.map": "/nadufa/samurai-way.git/static/css/3.68327534.chunk.css.map",
+    "3.c4674cef.chunk.js.map": "/nadufa/samurai-way.git/static/js/3.c4674cef.chunk.js.map",
+    "445.0db9cf31.chunk.css.map": "/nadufa/samurai-way.git/static/css/445.0db9cf31.chunk.css.map",
+    "445.f451d51a.chunk.js.map": "/nadufa/samurai-way.git/static/js/445.f451d51a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89f5f857.css",
+    "static/js/main.765c960c.js"
+  ]
+}
