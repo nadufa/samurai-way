@@ -1,4 +1,4 @@
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "api/api";
 import {Dispatch} from "redux";
 
 export type PostType = {
@@ -7,7 +7,7 @@ export type PostType = {
     likesCount: number
 }
 
-type ContactsType = {
+export type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -69,6 +69,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         case 'DELETE-POST': {
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         }
+        case 'SAVE-PHOTO-SUCCESS': {
+            return {...state, profile: {...state.profile!, photos: action.photos}}
+        }
         default:
             return state
     }
@@ -106,7 +109,20 @@ export const deletePostAC = (postId: number) => {
     } as const
 }
 
-export type ProfileRedActionsType = addPostACType | setUserProfileACType | setStatusACType | deletePostACType
+export type savePhotoSuccessACType = ReturnType<typeof savePhotoSuccessAC>
+export const savePhotoSuccessAC = (photos: PhotosType) => {
+    return {
+        type: 'SAVE-PHOTO-SUCCESS',
+        photos,
+    } as const
+}
+
+export type ProfileRedActionsType =
+    addPostACType
+    | setUserProfileACType
+    | setStatusACType
+    | deletePostACType
+    | savePhotoSuccessACType
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
@@ -122,5 +138,12 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatusAC(status))
+    }
+}
+
+export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(response.data.data.photos))
     }
 }
