@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/samurai-way/static/css/main.0c31d8d3.css",
-    "main.js": "/samurai-way/static/js/main.56625bf9.js",
+    "main.css": "/samurai-way/static/css/main.223b6944.css",
+    "main.js": "/samurai-way/static/js/main.8cc7a8a8.js",
     "static/css/3.c28b3dd5.chunk.css": "/samurai-way/static/css/3.c28b3dd5.chunk.css",
-    "static/js/3.a0d59821.chunk.js": "/samurai-way/static/js/3.a0d59821.chunk.js",
-    "static/css/630.f76a4db5.chunk.css": "/samurai-way/static/css/630.f76a4db5.chunk.css",
-    "static/js/630.103f775b.chunk.js": "/samurai-way/static/js/630.103f775b.chunk.js",
+    "static/js/3.6c1f3655.chunk.js": "/samurai-way/static/js/3.6c1f3655.chunk.js",
+    "static/css/630.f2cc8c61.chunk.css": "/samurai-way/static/css/630.f2cc8c61.chunk.css",
+    "static/js/630.c782fc2c.chunk.js": "/samurai-way/static/js/630.c782fc2c.chunk.js",
     "static/media/user.png": "/samurai-way/static/media/user.03a0c31746680500c559.png",
     "static/media/preloader.gif": "/samurai-way/static/media/preloader.63d7da1bc33c0063002c.gif",
     "index.html": "/samurai-way/index.html",
-    "main.0c31d8d3.css.map": "/samurai-way/static/css/main.0c31d8d3.css.map",
-    "main.56625bf9.js.map": "/samurai-way/static/js/main.56625bf9.js.map",
+    "main.223b6944.css.map": "/samurai-way/static/css/main.223b6944.css.map",
+    "main.8cc7a8a8.js.map": "/samurai-way/static/js/main.8cc7a8a8.js.map",
     "3.c28b3dd5.chunk.css.map": "/samurai-way/static/css/3.c28b3dd5.chunk.css.map",
-    "3.a0d59821.chunk.js.map": "/samurai-way/static/js/3.a0d59821.chunk.js.map",
-    "630.f76a4db5.chunk.css.map": "/samurai-way/static/css/630.f76a4db5.chunk.css.map",
-    "630.103f775b.chunk.js.map": "/samurai-way/static/js/630.103f775b.chunk.js.map"
+    "3.6c1f3655.chunk.js.map": "/samurai-way/static/js/3.6c1f3655.chunk.js.map",
+    "630.f2cc8c61.chunk.css.map": "/samurai-way/static/css/630.f2cc8c61.chunk.css.map",
+    "630.c782fc2c.chunk.js.map": "/samurai-way/static/js/630.c782fc2c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c31d8d3.css",
-    "static/js/main.56625bf9.js"
+    "static/css/main.223b6944.css",
+    "static/js/main.8cc7a8a8.js"
   ]
 }
